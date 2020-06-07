@@ -2,6 +2,13 @@ import numpy as np
 import init_candidates as initialize
 import check_sol as check
 import find_new_entry as findnew
+import update_cand as update
+
+
+class GameState:
+    def __init__(self,field,candidates):
+        self.field = field
+        self.cand = candidates
 
 
 def solve_sudoku(init, blocks=np.array([[1, 1, 1, 2, 2, 2, 3, 3, 3],
@@ -42,12 +49,17 @@ def solve_sudoku(init, blocks=np.array([[1, 1, 1, 2, 2, 2, 3, 3, 3],
 
     solution = init
     candidates = initialize.init_candidates(init, blocks)
+    state_stack = [GameState(solution, candidates)]
 
     # Now start the game loop to solve Sudoku
     while solved == 0:
         # First update variables
         found_new_entry = 0
         new_entry = -1
+        # Then get the state to be worked on
+        state_work = state_stack.pop()
+        solution = state_work.field
+        candidates = state_work.cand
 
         # First find the empty fields, that still need to be filled
         # The transpose / nonzero combination will return an nx2 array
@@ -62,7 +74,7 @@ def solve_sudoku(init, blocks=np.array([[1, 1, 1, 2, 2, 2, 3, 3, 3],
             curr_block = blocks[curr_field[0]][curr_field[1]]
             block_members = np.transpose(np.nonzero(blocks == curr_block))
 
-            # This function checks, if a new entry can be determined
+            # This function checks, if a new entry can be determined definitively
             new_entry, found_new_entry = \
                 findnew.find_new_entry(solution, blocks, candidates, curr_field)
 
@@ -70,18 +82,10 @@ def solve_sudoku(init, blocks=np.array([[1, 1, 1, 2, 2, 2, 3, 3, 3],
             if found_new_entry == 1:
                 # Fill in the new value
                 solution[curr_field[0]][curr_field[1]] = new_entry
+                # Update the candidate matrix
+                update.update_cand(candidates, curr_field, new_entry, block_members)
 
-                # After a field was filled we need to update the candidate matrix
-                # Firstly delete all entries for the field just filled
-                candidates[curr_field[0], curr_field[1], :] = 0
-                # Then update the current row
-                candidates[curr_field[0], :, (new_entry-1)] = 0
-                # Update current column
-                candidates[:, curr_field[1], (new_entry-1)] = 0
-                # And at last update the current block which is the most tricky
-                for j_block in block_members:
-                    candidates[j_block[0]][j_block[1]][new_entry-1] = 0
-
+                state_stack.append(GameState(solution, candidates))
                 break
 
         if curr_field[0] >= 0 and curr_field[1] >= 0:
@@ -95,9 +99,9 @@ def solve_sudoku(init, blocks=np.array([[1, 1, 1, 2, 2, 2, 3, 3, 3],
         # to guess one.
         # if found_new_entry == 0:
         #     nr_cand = np.zeros((9, 9), dtype="int")
-        #     for i in np.arange(9):
-        #         for j in np.arange(9):
-        #             nr_cand(i, j) = nnz(candidates(i, j,:))
+        #     for i in range(9):
+        #         for j in range(9):
+        #             nr_cand[i][j] = np.count_nonzero(candidates[i, j, :])
 
         # This part just goes to show that we might not be able to solve shit immediately
         if found_new_entry == 0:

@@ -22,8 +22,8 @@ def init_candidates(init, blocks):
     cand_matrix = np.ones((9, 9, 9), dtype="int")
 
     # Do the magic
-    for i in np.arange(9):
-        for j in np.arange(9):
+    for i in range(9):
+        for j in range(9):
             # If the field is already taken, the respective cand_matrix
             # field set to zero
             if init[i][j] != 0:
@@ -38,7 +38,7 @@ def init_candidates(init, blocks):
                 # block_fields should always contain 9 elements if the
                 # matrix is defined properly
 
-            for k in np.arange(9):
+            for k in range(9):
                 # We do not really need to check for i / j ~= k here
                 # because we already know that init(i, j) == 0.
                 # If an element is found the value is now candidate

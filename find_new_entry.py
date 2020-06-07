@@ -51,7 +51,7 @@ def find_new_entry(field, blocks, candidates, curr_field):
 
     # 2. Try if there is there is a candidate for current field that
     # occurs only once in the current row / column or block
-    for new_candidate in np.arange(9):
+    for new_candidate in range(9):
         if (candidates[curr_field[0]][curr_field[1]][new_candidate] == 1) and\
            (np.count_nonzero(candidates[curr_field[0]][:][new_candidate]) == 1):
             found_new_entry = 1

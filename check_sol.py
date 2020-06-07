@@ -23,7 +23,7 @@ def check_sol(field, blocks):
 
     result = -1
     # Now loop through the field checking rows, columns and blocks in one go
-    for i in np.arange(9):
+    for i in range(9):
         # We have to find the indices of elements which currently belong to
         # the block. Each row in curr_block will contain the row and
         # column of an element belonging to the current block
@@ -36,7 +36,7 @@ def check_sol(field, blocks):
 
         # Now go through each element of the row / column / block to check for
         # doubles
-        for j in np.arange(9):
+        for j in range(9):
             # Now check for doubles and if they are found return the right error
             # code. Also make sure that no 0 entries are checked
             if (field[i, j] != 0) and (check_doubles_row[field[i, j]-1] == 0):

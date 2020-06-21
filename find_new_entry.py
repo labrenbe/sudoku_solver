@@ -28,13 +28,13 @@ def find_new_entry(field, blocks, candidates, curr_field):
     # First of define some necessary values...
     new_entry = -1
     found_new_entry = 0
-
+    irow, icol = curr_field
     # Also determine the current block and its elements
-    curr_block = blocks[curr_field[0]][curr_field[1]]
+    curr_block = blocks[irow][icol]
 
     # Little sanity check testing if the field we are looking
     # at right now is actually empty
-    if field[curr_field[0]][curr_field[1]] != 0:
+    if field[irow][icol] != 0:
         raise ValueError('Field is not empty')
 
     ############################################################
@@ -44,28 +44,28 @@ def find_new_entry(field, blocks, candidates, curr_field):
     # Therefore check the entries in the candidate  matrix.If
     # only one nonzero entry is found - this is put into the
     # solution.
-    if np.count_nonzero(candidates[curr_field[0]][curr_field[1]][:]) == 1:
-        new_entry = (np.nonzero(candidates[curr_field[0]][curr_field[1]][:])[0] + 1)[0]
+    if np.count_nonzero(candidates[irow][icol][:]) == 1:
+        new_entry = (np.nonzero(candidates[irow][icol][:])[0] + 1)[0]
         found_new_entry = 1
         return new_entry, found_new_entry
 
     # 2. Try if there is there is a candidate for current field that
     # occurs only once in the current row / column or block
     for new_candidate in range(9):
-        if (candidates[curr_field[0]][curr_field[1]][new_candidate] == 1) and\
-           (np.count_nonzero(candidates[curr_field[0]][:][new_candidate]) == 1):
+        if (candidates[irow][icol][new_candidate] == 1) and\
+           (np.count_nonzero(candidates[irow, :, new_candidate]) == 1):
             found_new_entry = 1
 
-        if (candidates[curr_field[0]][curr_field[1]][new_candidate] == 1) and\
-           (np.count_nonzero(candidates[:][curr_field[1]][new_candidate]) == 1):
+        if (candidates[irow][icol][new_candidate] == 1) and\
+           (np.count_nonzero(candidates[:, icol, new_candidate]) == 1):
             found_new_entry = 1
 
-        temp_cdt = candidates[:][:][new_candidate]
-        if (candidates[curr_field[0]][curr_field[1]][new_candidate] == 1) and\
+        temp_cdt = candidates[:, :, new_candidate]
+        if (candidates[irow][icol][new_candidate] == 1) and\
            (np.count_nonzero(temp_cdt[blocks == curr_block]) == 1):
             found_new_entry = 1
 
-        if found_new_entry == 0:
+        if found_new_entry == 1:
             new_entry = new_candidate + 1  # Python is 0-based
             break
 

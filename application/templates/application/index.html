@@ -4,7 +4,22 @@
     <meta charset="UTF-8">
     <title>Sudoku Solver</title>
 </head>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'application/style.css' %}">
 <body>
-
+<h1>Sudoku Solver</h1>
+<form >
+    <table>
+        {% for y in '012345678'|make_list %}
+            <tr>
+            {% for x in '012345678'|make_list %}
+                <th><input type="number" min="1" max="9" id="{{x}}{{y}}" x="{{x}}" y="{{y}}"/></th>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <input type="submit" value="Solve!">
+</form>
 </body>
 </html>

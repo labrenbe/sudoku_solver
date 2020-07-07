@@ -1,0 +1,35 @@
+form, table {
+    padding: 0;
+    width: 450px;
+    height: 450px;
+    table-layout: fixed;
+    border-spacing: 0;
+}
+
+th, td, input[type=number] {
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+input[type=number] {
+    text-align: center;
+    font-weight: bold;
+    font-size: xx-large;
+    -moz-appearance: textfield;
+}
+
+input[type=submit] {
+    width: 100px;
+    height: 30px;
+    font-size: x-large;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+

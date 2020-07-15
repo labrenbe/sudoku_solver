@@ -7,6 +7,16 @@ from django.template import loader
 
 from solver_logic.solve_sudoku import solve_sudoku
 
+blocks = np.array([[1, 1, 1, 2, 2, 2, 3, 3, 3],
+                   [1, 1, 1, 2, 2, 2, 3, 3, 3],
+                   [1, 1, 1, 2, 2, 2, 3, 3, 3],
+                   [4, 4, 4, 5, 5, 5, 6, 6, 6],
+                   [4, 4, 4, 5, 5, 5, 6, 6, 6],
+                   [4, 4, 4, 5, 5, 5, 6, 6, 6],
+                   [7, 7, 7, 8, 8, 8, 9, 9, 9],
+                   [7, 7, 7, 8, 8, 8, 9, 9, 9],
+                   [7, 7, 7, 8, 8, 8, 9, 9, 9]])
+
 
 def solve(request):
     matrix = np.zeros((9, 9), dtype=int)
@@ -15,16 +25,6 @@ def solve(request):
         for x in range(9):
             value = request.POST.get(str(y) + ':' + str(x))
             matrix[y][x] = value if value is not None and value != '' else 0
-
-    blocks = np.array([[1, 1, 1, 2, 2, 2, 3, 3, 3],
-                       [1, 1, 1, 2, 2, 2, 3, 3, 3],
-                       [1, 1, 1, 2, 2, 2, 3, 3, 3],
-                       [4, 4, 4, 5, 5, 5, 6, 6, 6],
-                       [4, 4, 4, 5, 5, 5, 6, 6, 6],
-                       [4, 4, 4, 5, 5, 5, 6, 6, 6],
-                       [7, 7, 7, 8, 8, 8, 9, 9, 9],
-                       [7, 7, 7, 8, 8, 8, 9, 9, 9],
-                       [7, 7, 7, 8, 8, 8, 9, 9, 9]])
 
     matrix = solve_sudoku(matrix, blocks)
 

@@ -19,11 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="902ef068-0701-46be-b602-fe8284ed7e93" name="Default Changelist" comment="created basic data model and index view">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/templates/application/sudoku_solver.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/templates/application/sudoku_solver.html" afterDir="false" />
+    <list default="true" id="902ef068-0701-46be-b602-fe8284ed7e93" name="Default Changelist" comment="linked html table to np array">
+      <change afterPath="$PROJECT_DIR$/solver_logic/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku_solver/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku_solver/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/check_sol.py" beforeDir="false" afterPath="$PROJECT_DIR$/solver_logic/check_sol.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/find_new_entry.py" beforeDir="false" afterPath="$PROJECT_DIR$/solver_logic/find_new_entry.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/init_candidates.py" beforeDir="false" afterPath="$PROJECT_DIR$/solver_logic/init_candidates.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solve_sudoku.py" beforeDir="false" afterPath="$PROJECT_DIR$/solver_logic/solve_sudoku.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/update_cand.py" beforeDir="false" afterPath="$PROJECT_DIR$/solver_logic/update_cand.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +36,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -66,6 +69,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Bene\PycharmProjects\sudoku-solver\solver_logic" />
       <recent name="C:\Users\Bene\PycharmProjects\sudoku-solver\sudoku_solver" />
       <recent name="C:\Users\Bene\PycharmProjects\sudoku-solver" />
     </key>
@@ -130,7 +134,7 @@
       <workItem from="1588317733792" duration="4326000" />
       <workItem from="1593948061339" duration="7110000" />
       <workItem from="1594802381708" duration="33000" />
-      <workItem from="1594802593254" duration="4091000" />
+      <workItem from="1594802593254" duration="4877000" />
     </task>
     <task id="LOCAL-00001" summary="initialized django">
       <created>1588322945680</created>
@@ -146,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593958389762</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="linked html table to np array">
+      <created>1594806975339</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1594806975339</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,7 +179,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="initialized django" />
     <MESSAGE value="created basic data model and index view" />
-    <option name="LAST_COMMIT_MESSAGE" value="created basic data model and index view" />
+    <MESSAGE value="linked html table to np array" />
+    <option name="LAST_COMMIT_MESSAGE" value="linked html table to np array" />
   </component>
   <component name="WindowStateProjectService">
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594803524733">

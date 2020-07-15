@@ -3,5 +3,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.solve, name='sudoku_solver'),
+    path('solve', views.solve, name='solve'),
+    path('reset', views.reset, name='reset'),
 ]

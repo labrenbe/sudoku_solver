@@ -55,9 +55,7 @@ def solve_sudoku(init, blocks):
         if state_stack:
             state_work = state_stack.pop()
         else:
-            raise ValueError('No current Sudoku state to work on! \
-                Either the puzzle is unsolvable or the solver is too weak ... aborting mission.')
-            return
+            return solution
         solution = np.copy(state_work.field)
         candidates = np.copy(state_work.cand)
 

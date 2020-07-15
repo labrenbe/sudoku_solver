@@ -19,14 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="902ef068-0701-46be-b602-fe8284ed7e93" name="Default Changelist" comment="linked html table to np array">
-      <change afterPath="$PROJECT_DIR$/solver_logic/__init__.py" afterDir="false" />
+    <list default="true" id="902ef068-0701-46be-b602-fe8284ed7e93" name="Default Changelist" comment="integrated frontend and backend">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/templates/application/sudoku_solver.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/templates/application/sudoku_solver.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/check_sol.py" beforeDir="false" afterPath="$PROJECT_DIR$/solver_logic/check_sol.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/find_new_entry.py" beforeDir="false" afterPath="$PROJECT_DIR$/solver_logic/find_new_entry.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/init_candidates.py" beforeDir="false" afterPath="$PROJECT_DIR$/solver_logic/init_candidates.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solve_sudoku.py" beforeDir="false" afterPath="$PROJECT_DIR$/solver_logic/solve_sudoku.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/update_cand.py" beforeDir="false" afterPath="$PROJECT_DIR$/solver_logic/update_cand.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solver_logic/solve_sudoku.py" beforeDir="false" afterPath="$PROJECT_DIR$/solver_logic/solve_sudoku.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +132,7 @@
       <workItem from="1588317733792" duration="4326000" />
       <workItem from="1593948061339" duration="7110000" />
       <workItem from="1594802381708" duration="33000" />
-      <workItem from="1594802593254" duration="4877000" />
+      <workItem from="1594802593254" duration="7228000" />
     </task>
     <task id="LOCAL-00001" summary="initialized django">
       <created>1588322945680</created>
@@ -157,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594806975339</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="integrated frontend and backend">
+      <created>1594807549945</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1594807549945</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,7 +185,8 @@
     <MESSAGE value="initialized django" />
     <MESSAGE value="created basic data model and index view" />
     <MESSAGE value="linked html table to np array" />
-    <option name="LAST_COMMIT_MESSAGE" value="linked html table to np array" />
+    <MESSAGE value="integrated frontend and backend" />
+    <option name="LAST_COMMIT_MESSAGE" value="integrated frontend and backend" />
   </component>
   <component name="WindowStateProjectService">
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594803524733">

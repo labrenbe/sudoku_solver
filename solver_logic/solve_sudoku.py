@@ -42,7 +42,6 @@ def solve_sudoku(init, blocks):
     candidates = initialize.init_candidates(init, blocks)
     state_stack = [GameState(solution, candidates)]
 
-
     # Now start the game loop to solve Sudoku
     while solved == 0:
         curr_step += 1

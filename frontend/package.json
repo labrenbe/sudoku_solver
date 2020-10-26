@@ -1,0 +1,14 @@
+{
+  "name": "sudoku-solver",
+  "version": "1.0.0",
+  "description": "Sudoku Solver",
+  "main": "index.html",
+  "scripts": {
+    "serve": "serve"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.2.0"
+  }
+}

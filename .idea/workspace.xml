@@ -20,40 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="902ef068-0701-46be-b602-fe8284ed7e93" name="Default Changelist" comment="fixed init bug">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Bene.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/application/static/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/static/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sudoku_solver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sudoku_solver.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/application/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/application/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/application/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/application/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/application/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/application/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/static/application/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/application/static/application/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/templates/application/sudoku_solver.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/application/templates/application/sudoku_solver.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/application/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/application/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/application/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solver_logic/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/solver_logic/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solver_logic/check_sol.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/solver_logic/check_sol.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solver_logic/find_new_entry.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/solver_logic/find_new_entry.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solver_logic/init_candidates.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/solver_logic/init_candidates.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solver_logic/solve_sudoku.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/solver_logic/solve_sudoku.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solver_logic/update_cand.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/solver_logic/update_cand.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku_solver/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sudoku_solver/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku_solver/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sudoku_solver/asgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku_solver/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sudoku_solver/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku_solver/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sudoku_solver/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku_solver/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sudoku_solver/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +46,7 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JupyterTrust" id="c6dd4325-05e8-4fd8-b5d4-32cd14367cec" />
   <component name="ProjectId" id="1bIRfzlF676nVxPL5qxhC29AsCm" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -96,6 +66,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/static" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -157,6 +128,7 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -180,7 +152,12 @@
       <workItem from="1603042619920" duration="5785000" />
       <workItem from="1603554525908" duration="5000" />
       <workItem from="1603738814500" duration="233000" />
-      <workItem from="1603739087160" duration="8115000" />
+      <workItem from="1603739087160" duration="8676000" />
+      <workItem from="1603816459124" duration="6226000" />
+      <workItem from="1604345201490" duration="35000" />
+      <workItem from="1604345275692" duration="333000" />
+      <workItem from="1604345768165" duration="6497000" />
+      <workItem from="1604691434569" duration="654000" />
     </task>
     <task id="LOCAL-00001" summary="initialized django">
       <created>1588322945680</created>
@@ -235,7 +212,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -261,14 +238,18 @@
     <option name="LAST_COMMIT_MESSAGE" value="fixed init bug" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594803524733">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="640" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1604345300685">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1594803524733" />
+    <state x="640" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1604345300685" />
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603042108182">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1603042108182" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1604350064508">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1604350064508" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1603042108382">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -285,14 +266,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.right/1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1603042108382" />
-    <state x="461" y="165" key="SettingsEditor" timestamp="1603042602458">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="461" y="165" key="SettingsEditor/1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1603042602458" />
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1594811018639">
+    <state x="284" y="0" key="SettingsEditor" timestamp="1603828405947">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1594811018639" />
+    <state x="284" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1603828405947" />
+    <state x="461" y="165" key="SettingsEditor/1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1603042602458" />
     <state x="450" y="255" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602270322700">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

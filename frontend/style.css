@@ -1,6 +1,9 @@
 * {
     margin: 0;
-    padding: 0;
+    text-align: center;
+    font-size: 12px;
+    font-family: 'Dosis', sans-serif;
+    font-weight: bold;
 }
 
 select:focus,
@@ -22,7 +25,6 @@ body {
     justify-items: center;
 }
 
-
 .matrix {
     display: table;
     background: white;
@@ -37,23 +39,22 @@ body {
 
 .cell-input {
     border: none;
-    width: 20px;
-    height: 20px;
     font-family: 'Dosis', sans-serif;
     font-weight: bold;
     text-align: center;
     font-size: 18px;
 }
 
-.buttons-container {
+.square {
+    width: 20px;
+    height: 20px;
+}
+
+.container {
     display: inline-flex;
     grid-template-rows: auto auto;
     padding-top: 25px;
     width: 100%;
-}
-
-.button-div {
-    width: 5%;
 }
 
 .no-pointer {
@@ -73,16 +74,19 @@ body {
     border: 2px solid black;
     background-color: whitesmoke;
     color: black;
-    text-align: center;
-    font-size: 12px;
     padding: 6px;
-    font-family: 'Dosis', sans-serif;
-    font-weight: bold;
     width: 30%;
 }
 
 .button-selected {
     background-color: lightskyblue;
+}
+
+.selected-block {
+    display: inline-block;
+    border: 2px solid black;
+    color: black;
+    padding: 6px;
 }
 
 .block0 {

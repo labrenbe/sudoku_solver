@@ -15,24 +15,32 @@ Vue.component('sudoku-matrix', {
         return {
             matrix: sampleMatrix.map(x => toObj(x)),
             blockMode: false,
+            selectedBlock: 0,
         }
     },
     template: `
         <div>
+            <div style="font-size:20px;padding:20px">Sudoku Solver</div>
             <div class="matrix">
-                <div v-for="row in matrix" class="grid-row">
-                    <div v-for="cell in row" class="cell" v-bind:class="getClass(cell.block)" @click="incrementBlock(cell)">
-                        <input v-if="!blockMode" type="text" v-model="cell.value" v-bind:class="getClass(cell.block)" class="cell-input" @change="validateCell(cell)"/>
-                        <div v-if="blockMode" class="cell-input unselectable no-pointer">{{cell.value}}</div>
+                <div v-for="row in matrix">
+                    <div v-for="cell in row" class="cell" v-bind:class="getClass(cell.block)" @click="changeBlock(cell)">
+                            <input v-if="!blockMode" class="cell-input square" type="text" v-model="cell.value" 
+                            v-bind:class="getClass(cell.block)" @change="validateCell(cell)"/>
+                        <div v-if="blockMode" class="cell-input unselectable no-pointer" style="width:24px;height:22px">{{cell.value}}</div>
                     </div>
                 </div>
             </div>
-            <div class="buttons-container">
+            <div class="container">
                 <button class="button unselectable" v-on:click="solve()"><span>Solve!</span></button>
-                <div class="button-div"/>
+                <div style="width:5%"/>
                 <button class="button unselectable" v-on:click="numbers()" v-bind:class="{'button-selected': !blockMode}"><span>Enter Numbers</span></button>
-                <div class="button-div"/>
+                <div style="width:5%"/>
                 <button class="button unselectable" v-on:click="blocks()" v-bind:class="{'button-selected': blockMode}"><span>Change Blocks</span></button>
+            </div>
+                <div class="container">
+                <div style="width: 60%"/>
+                <span style="width:30%; padding: 6px" class="unselectable">Selected Block Color</span>
+                <div class="selected-block" style="width:5%" v-bind:class="getClass(selectedBlock)" @click="incrementSelectedBlock()"/>
             </div>
         </div>`,
     methods: {
@@ -45,9 +53,9 @@ Vue.component('sudoku-matrix', {
         numbers() {
             this.blockMode = false;
         },
-        incrementBlock(cell) {
+        changeBlock(cell) {
             if (this.blockMode) {
-                cell.block = (cell.block + 1) % 9;
+                cell.block = this.selectedBlock;
             }
         },
         validateCell(cell) {
@@ -57,6 +65,9 @@ Vue.component('sudoku-matrix', {
         },
         solve() {
             console.log('Solve!');
+        },
+        incrementSelectedBlock() {
+            this.selectedBlock = (this.selectedBlock + 1) % 9;
         }
     }
 });

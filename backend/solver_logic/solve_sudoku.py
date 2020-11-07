@@ -1,8 +1,9 @@
 import numpy as np
 import time
-from solver_logic import find_new_entry as findnew, check_sol as check, update_cand as update, \
+# from solver_logic import find_new_entry as findnew, check_sol as check, update_cand as update, \
+#     init_candidates as initialize
+import find_new_entry as findnew, check_sol as check, update_cand as update, \
     init_candidates as initialize
-
 
 class GameState:
     def __init__(self, field, candidates):
@@ -10,7 +11,7 @@ class GameState:
         self.cand = candidates
 
 
-def solve_sudoku(init, blocks):
+def solve_sudoku(init, blocks, generation = False):
     """
     Solves a given Sudoku 
     """
@@ -27,13 +28,32 @@ def solve_sudoku(init, blocks):
     #           standard Sudoku is assumed.
     #
     # Output:
+    # The output of this function is changed with the generation flag!!
+    #  Default (generation=False):
     # - solution
     #           Results of the solver again in the form of
     #           a 9x9 matrix
+    #  generation=True:
+    #   This represents the case when the function is used in generating Sudokus
+    #   Hence, we are only interested in some basic information instead of the actual solution:
+    #   - sol_exist     Flag indicating if a solution exists
+    #   - sol_unique    Flag indicating if the solution is unique (a bit pointless if sol_exist = False)
+    #   - branching_needed Flag indicating if the solution is trivial or the solver needed guessing
 
     # First of all some statistics and timing variables
-    tic = time.perf_counter()
+    # tic = time.perf_counter()
     curr_step = 0
+
+    # Some additional stuff needed for  generation of new Sudokus:
+    # Initially we assume that a unique solution exists and we
+    # do not require guessing to solve
+    if generation:
+        sol_exist = False
+        sol_unique = True
+        branching_needed = False
+    else:
+        sol_exist = True;sol_unique=True;branching_needed=False
+
     # Define and initialize variables needed (plus output stuff)
     # solution = np.zeros((9, 9), dtype="int")  # Sudoku 9x9 field containing the solution of this solver
     # candidates = np.zeros((9, 9, 9), dtype="int")  # Integer array containing the candidates for each field
@@ -54,7 +74,7 @@ def solve_sudoku(init, blocks):
         if state_stack:
             state_work = state_stack.pop()
         else:
-            return solution
+            break
         solution = np.copy(state_work.field)
         candidates = np.copy(state_work.cand)
 
@@ -110,6 +130,9 @@ def solve_sudoku(init, blocks):
         # field with the least candidates and add all these candidates
         # to the stack of states we still consider
         else:  # found_new_entry == 0
+            # Flag to show, that we need branching to solve this one
+            if generation:
+                branching_needed = True
             # print("NO unique value found starting to branch ...")
 
             nr_cand = np.count_nonzero(candidates, axis=2)
@@ -135,12 +158,27 @@ def solve_sudoku(init, blocks):
         # solution is legit
         if (np.count_nonzero(solution) == 81) and \
                 (check.check_sol(solution, blocks) == 0):
-            solved = 1
+            # Again more functionality for generation
+            if generation:
+                # If we come here the first time sol_exist is False
+                # --> Set to True, because we now know a solution exists
+                if not sol_exist:
+                    sol_exist = True
+                # If we arrive here again we no that the solution is not unique
+                # and stop searching for more solutions
+                else:
+                    sol_unique = False
+                    solved = 1
+            else:
+                solved = 1
 
-    toc = time.perf_counter()
-    print("*******************************************************")
-    print("Found a complete and correct solution. It reads:")
-    print(solution)
-    return solution
-    print(f"Time needed to solve is {toc-tic:0.4f} seconds.")
-    print(f"It took a whole of {curr_step} steps to obtain.")
+    # toc = time.perf_counter()
+    if generation:
+        return sol_exist,sol_unique,branching_needed
+    else:
+        print("*******************************************************")
+        print("Found a complete and correct solution. It reads:")
+        print(solution)
+        return solution
+    # print(f"Time needed to solve is {toc-tic:0.4f} seconds.")
+    # print(f"It took a whole of {curr_step} steps to obtain.")

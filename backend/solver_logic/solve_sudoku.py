@@ -173,12 +173,12 @@ def solve_sudoku(init, blocks, generation = False):
                 solved = 1
 
     # toc = time.perf_counter()
-    print("*******************************************************")
-    print("Found a complete and correct solution. It reads:")
-    print(solution)
     if generation:
-        return sol_exist,sol_unique,branching_needed
+        return sol_exist, sol_unique, branching_needed
     else:
+        print("*******************************************************")
+        print("Found a complete and correct solution. It reads:")
+        print(solution)
         return solution
     # print(f"Time needed to solve is {toc-tic:0.4f} seconds.")
     # print(f"It took a whole of {curr_step} steps to obtain.")

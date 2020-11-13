@@ -15,41 +15,97 @@ def generate_sudoku(difficulty = "easy"):
     #               Supported values: "easy", "medium", "hard"
     #
     # Output:
-    # - init_field       9x9 array containing the starting numbers of the sudoku
+    # - puzzle       9x9 array containing the starting numbers of the sudoku
 
-    #Initialize output
-    init_field = np.zeros((9,9), dtype="int")
+    # Initialize output
+    blocks = init_blocks()
 
+    # Define parameters
+    # min_initial_numbers   Number of fields allowed in the initial setup
+    # allow_branching       0: Every field can be determined straight-forward
+    #                       else: Guessing may be necessary
+    if difficulty == "easy":
+        min_initial_numbers = 60
+        allow_branching = 0
+    elif difficulty == "medium":
+        min_initial_numbers = 40
+        allow_branching = 0
+    elif difficulty == "hard":
+        min_initial_numbers = 30
+        allow_branching = 1
+    else:
+        raise ValueError("In generator.py: Wrong difficulty value, only 'easy', 'medium' and 'hard' are supported.")
 
-    # Generate entries and insert them into the field, checking that it is still viable
-    new_entries = ran.choice([(i%9)+1 for i in range(81)], min_initial_numbers, replace = False)
+    # Generate the entries to be filled in
+    new_entries = ran.choice([(i % 9) + 1 for i in range(81)], min_initial_numbers, replace=False)
 
-    it = 0
+    # Now keep looping trough all of the entries and find a position for them all
+    # while making sure, that in the end the puzzle is uniquely solvable and fulfills our
+    # requirements.
     while True:
-        it += 1
-        if it > 1000:
-            print("WARNING: Could not finish generation - returning current solution!")
-            return init_field
+        it = 0
+        if it >= 100:
+            raise ValueError("WARNING: Could not find suitable puzzle after 100 iterations.")
 
-        # Generate random fields where the entries are inserted
-        indices = ran.choice([i for i in range(81)], min_initial_numbers, replace=False)
-        for i in indices:
-            row = int(i / 9)
-            col = i % 9
-            print(row)
-            print(col)
-            init_field[row, col] = new_entries
+        # Also initialise the sudoku field and a candidate matrix used for number insertion
+        puzzle = np.zeros((9, 9), dtype="int")
+        cand = np.ones((9, 9, 9), dtype="int")
+        # Additionally we create a history being used for possible reverses
+        puzzle_history = np.zeros((9, 9, min_initial_numbers + 1), dtype="int")
+        nr_e = 0
+        for e in new_entries:
+            nr_e += 1
+            # Since we want a bit of randomness in here we will not loop through the fields in order:
+            for i in np.random.permutation([j for j in range(81)]):
+                row = int(i / 9)
+                col = i % 9
+                block_members = np.transpose(np.nonzero(blocks == blocks[row][col]))
 
-        print(init_field)
-        time.sleep(0.2)
-        # Check for a solution of the sudoku
-        sol_exist, sol_unique, branching_req = ss.solve_sudoku(init_field, blocks, generation = True)
+                # Now this is the crucial part: we only add the entry e to field i
+                # if we can be sure that it's feasible AND a solution still exists after we add it
+                # Otherwise we look at the next field.
+                if cand[row][col][e - 1] == 1:
+                    puzzle[row, col] = e
+                    if reqs_fulfilled(puzzle, blocks, allow_branching):
+                        uc.update_cand(cand, [row, col], e, block_members)
+                        puzzle_history[:, :, nr_e] = puzzle
+                        break
+                    else:
+                        puzzle[row, col] = 0
 
-        # If we found a suitable field, we have finished
-        if sol_exist and sol_unique and (allow_branching or (branching_req == allow_branching)):
+            # This point is only reached if we did not find a suitable field for entry e
+            # in the loop before. That on the other hand means, that we have to take a step
+            # back and retry.
+            # TODO
+
+        # At this point all numbers should be distributed.
+        # If we found a suitable puzzle (i.e. matching all requirements), we have finished
+        if reqs_fulfilled(puzzle, blocks, allow_branching):
             break
+        it += 1
 
-    return init_field
+    return puzzle
+
+
+def reqs_fulfilled(field, blocks, allow_branching):
+    """
+    Function that checks if the requirements for the solution are fulfilled.
+    """
+    # Those are that 1. a solution exists, 2. that this solution is unique
+    # and 3. that branching (i.e. guessing) is only necessary as desired.
+    # Input:
+    #     field   Current standing of the Sudoku
+    #     blocks  Blocks of the current Sudoku
+    #     allow_branching
+    #             Flag that marks if branching is allowed
+    # Output:
+    #     reqs    Flag indicating if the three criteria mentioned above are fulfilled
+
+    reqs = False
+    sol_exist, sol_unique, branching_req = ss.solve_sudoku(field, blocks, generation=True)
+    if sol_exist and sol_unique and (branching_req == allow_branching or allow_branching):
+        reqs = True
+    return reqs
 
 def init_blocks():
     # Little helper function to create the default blocks

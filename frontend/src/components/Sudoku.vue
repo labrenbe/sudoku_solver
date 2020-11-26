@@ -1,36 +1,41 @@
 <template>
   <div>
-    <div class="headline">Sudoku Solver</div>
-      <div class="matrix">
-        <div v-for="row in matrix" v-bind:key="row">
-          <div v-for="cell in row" v-bind:key="cell" v-bind:class="this.getClass(cell.block)"
-               @click="changeBlock(cell)" class="cell">
+    <div class="sudoku">
+      <div class="headline">Sudoku Solver</div>
+      <div class="matrix" v-if="matrix !== undefined">
+        <div v-for="(row, index) in matrix.cells" v-bind:key="`row-${index}`">
+          <div v-for="cell in row.filter(c => c !== undefined)" v-bind:key="cell.value"
+               v-bind:class="getClass(cell.block)" @click="changeBlock(cell)" class="cell">
             <label>
-              <input v-if="!blockMode" class="cell-input-number" type="text" v-model="cell.value"
-                     v-bind:class="this.getClass(cell.block)" @change="this.validateCell(cell)"/>
+              <input v-if="!blockMode && cell.block !== undefined" class="cell-input-number"
+                     type="text" v-model="cell.value" v-bind:class="getClass(cell.block)"
+                     @change="validateCell(cell)"/>
             </label>
             <div v-if="blockMode" class="cell-input-block unselectable no-pointer">
               {{cell.value}}
             </div>
           </div>
         </div>
+      </div>
+      <div style="width:100%">
+        <div class="container">
+          <button class="button unselectable" v-on:click="solve()"><span>Solve!</span></button>
+          <div style="width:5%"/>
+          <button class="button unselectable" v-on:click="setBlockMode(false)"
+                  v-bind:class="{'button-selected': !blockMode}"><span>Enter Numbers</span></button>
+          <div style="width:5%"/>
+          <button class="button unselectable" v-on:click="setBlockMode(true)"
+                  v-bind:class="{'button-selected': blockMode}"><span>Change Blocks</span></button>
+        </div>
+          <div class="container">
+          <div style="width: 60%"/>
+          <span style="width:30%; padding: 6px" class="unselectable">Selected Block Color</span>
+          <div class="selected-block" style="width:5%" v-bind:class="getClass(selectedBlock)"
+               @click="incrementSelectedBlock()"/>
+        </div>
+      </div>
     </div>
-    <div class="container">
-      <button class="button unselectable" v-on:click="solve()"><span>Solve!</span></button>
-      <div style="width:5%"/>
-      <button class="button unselectable" v-on:click="setBlockMode(false)"
-              v-bind:class="{'button-selected': !blockMode}"><span>Enter Numbers</span></button>
-      <div style="width:5%"/>
-      <button class="button unselectable" v-on:click="setBlockMode(true)"
-              v-bind:class="{'button-selected': blockMode}"><span>Change Blocks</span></button>
-    </div>
-      <div class="container">
-      <div style="width: 60%"/>
-      <span style="width:30%; padding: 6px" class="unselectable">Selected Block Color</span>
-      <div class="selected-block" style="width:5%" v-bind:class="getClass(selectedBlock)"
-           @click="incrementSelectedBlock()"/>
-    </div>
-</div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -47,7 +52,8 @@ export default class Sudoku extends Vue {
 
   selectedBlock = 0;
 
-  static getClass(int: number) {
+  // eslint-disable-next-line
+  getClass(int: number) {
     return `block${int.toString()}`;
   }
 
@@ -61,18 +67,20 @@ export default class Sudoku extends Vue {
     }
   }
 
-  static validateCell(cell: Cell) {
+  // eslint-disable-next-line
+  validateCell(cell: Cell) {
     if (cell.value != null) {
-      if (cell.value < 10 && cell.value > 0 && !(Number.isNaN(cell.value))) {
+      if (!(cell.value in ['1', '2', '3', '4', '5', '6', '7', '8', '9'])
+        || cell.value.toString() === '0') {
         cell.setNull();
       }
     }
   }
 
-  static solve() {
-    console.log('Solve!');
-    const path = 'http://localhost:5000/';
-    axios.get(path)
+  // eslint-disable-next-line
+  solve() {
+    const path = 'http://localhost:5000/solve';
+    axios.post(path, 'Testestest')
       .then((res: any) => {
         // eslint-disable-next-line
         console.log = res.data;
@@ -111,8 +119,8 @@ body {
     font-family: 'Dosis', sans-serif;
 }
 
-#sudoku-app {
-    display: grid;
+.sudoku {
+    display: inline-block;
     grid-template-rows: auto 1fr;
     justify-items: center;
 }
@@ -145,8 +153,8 @@ body {
     font-weight: bold;
     text-align: center;
     font-size: 18px;
-    width: 22px;
-    height: 24px;
+    width: 24px;
+    height: 22px;
 }
 
 .container {

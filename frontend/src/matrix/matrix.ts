@@ -11,9 +11,9 @@ export default class Matrix {
       Matrix.createEmptyRow(4, 5, 6),
       Matrix.createEmptyRow(4, 5, 6),
       Matrix.createEmptyRow(4, 5, 6),
-      Matrix.createEmptyRow(7, 8, 9),
-      Matrix.createEmptyRow(7, 8, 9),
-      Matrix.createEmptyRow(7, 8, 9)];
+      Matrix.createEmptyRow(7, 8, 0),
+      Matrix.createEmptyRow(7, 8, 0),
+      Matrix.createEmptyRow(7, 8, 0)];
   }
 
   toArray() {

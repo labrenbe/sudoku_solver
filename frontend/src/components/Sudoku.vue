@@ -11,7 +11,7 @@
                      type="text" v-model="cell.value" v-bind:class="getClass(cell.block)"
                      @change="validateCell(cell)"/>
             </label>
-            <div v-if="blockMode" class="cell-input-block unselectable no-pointer">
+            <div v-if="blockMode" class="cell-input-block unselect no-pointer">
               {{cell.value}}
             </div>
           </div>
@@ -19,17 +19,17 @@
       </div>
       <div style="width:100%">
         <div class="container">
-          <button class="button unselectable" v-on:click="solve()"><span>Solve!</span></button>
+          <button class="button unselect" v-on:click="solve(matrix)"><span>Solve!</span></button>
           <div style="width:5%"/>
-          <button class="button unselectable" v-on:click="setBlockMode(false)"
+          <button class="button unselect" v-on:click="setBlockMode(false)"
                   v-bind:class="{'button-selected': !blockMode}"><span>Enter Numbers</span></button>
           <div style="width:5%"/>
-          <button class="button unselectable" v-on:click="setBlockMode(true)"
+          <button class="button unselect" v-on:click="setBlockMode(true)"
                   v-bind:class="{'button-selected': blockMode}"><span>Change Blocks</span></button>
         </div>
           <div class="container">
           <div style="width: 60%"/>
-          <span style="width:30%; padding: 6px" class="unselectable">Selected Block Color</span>
+          <span style="width:30%; padding: 6px" class="unselect">Selected Block Color</span>
           <div class="selected-block" style="width:5%" v-bind:class="getClass(selectedBlock)"
                @click="incrementSelectedBlock()"/>
         </div>
@@ -78,12 +78,14 @@ export default class Sudoku extends Vue {
   }
 
   // eslint-disable-next-line
-  solve() {
+  solve(matrix: Matrix) {
     const path = 'http://localhost:5000/solve';
-    axios.post(path, 'Testestest')
+    axios.post(path, JSON.stringify(matrix.toArray()),
+      {
+        headers: { 'Content-Type': 'application/json' },
+      })
       .then((res: any) => {
-        // eslint-disable-next-line
-        console.log = res.data;
+        matrix.fromArray(res.data);
       })
       .catch((error: any) => {
       // eslint-disable-next-line
@@ -168,7 +170,7 @@ body {
     pointer-events:none;
 }
 
-.unselectable {
+.unselect {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;

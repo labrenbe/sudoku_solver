@@ -9,7 +9,7 @@ export default class Cell {
   }
 
   toArray() {
-    return [this.value, this.block];
+    return [this.block, this.value];
   }
 
   fromArray([block, value]: Array<number>) {

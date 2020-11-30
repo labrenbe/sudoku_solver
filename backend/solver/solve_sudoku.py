@@ -1,13 +1,13 @@
 import numpy as np
 import time
-from solver_logic import find_new_entry as findnew, check_sol as check, update_cand as update, \
+from backend.solver import find_new_entry as find_new, check_sol as check, update_cand as update, \
     init_candidates as initialize
 
 
 class GameState:
     def __init__(self, field, candidates):
         self.field = field
-        self.cand = candidates
+        self.candidates = candidates
 
 
 def solve_sudoku(init, blocks):
@@ -56,7 +56,7 @@ def solve_sudoku(init, blocks):
         else:
             return solution
         solution = np.copy(state_work.field)
-        candidates = np.copy(state_work.cand)
+        candidates = np.copy(state_work.candidates)
 
         # Quickly check that we can actually still set new numbers
         # Otherwise we reached a dead end
@@ -78,7 +78,7 @@ def solve_sudoku(init, blocks):
 
             # This function checks, if a new entry can be determined definitively
             new_entry, found_new_entry = \
-                findnew.find_new_entry(solution, blocks, candidates, (irow, icol))
+                find_new.find_new_entry(solution, blocks, candidates, (irow, icol))
 
             # If we found a new entry we can obviously stop looking
             if found_new_entry == 1:

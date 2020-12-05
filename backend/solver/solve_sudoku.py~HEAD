@@ -1,6 +1,12 @@
 import numpy as np
 import time
+<<<<<<< HEAD:backend/solver/solve_sudoku.py
 from backend.solver import find_new_entry as find_new, check_sol as check, update_cand as update, \
+=======
+# from solver_logic import find_new_entry as findnew, check_sol as check, update_cand as update, \
+#     init_candidates as initialize
+import find_new_entry as findnew, check_sol as check, update_cand as update, \
+>>>>>>> origin/generator:backend/solver_logic/solve_sudoku.py
     init_candidates as initialize
 
 class GameState:

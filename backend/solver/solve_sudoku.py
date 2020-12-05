@@ -20,11 +20,11 @@ def solve_sudoku(init, blocks):
     #
     # Input:
     # - init    Initial Sudoku numbers given in the form of
-    #           a 9x9 matrix.
+    #           a 9x9 matrix. (should be of type np.array)
     # - blocks  ~\Optional argument\~ defining 3x3 blocks in
     #           a 9x9 matrix. These should be numbered from
     #           1 to 9. If this argument is not given, a
-    #           standard Sudoku is assumed.
+    #           standard Sudoku is assumed. (should be an np.array)
     #
     # Output:
     # - solution

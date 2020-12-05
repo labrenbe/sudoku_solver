@@ -5,15 +5,15 @@ export default class Matrix {
 
   constructor() {
     this.cells = [
-      Matrix.createEmptyRow(1, 2, 3),
-      Matrix.createEmptyRow(1, 2, 3),
-      Matrix.createEmptyRow(1, 2, 3),
-      Matrix.createEmptyRow(4, 5, 6),
-      Matrix.createEmptyRow(4, 5, 6),
-      Matrix.createEmptyRow(4, 5, 6),
-      Matrix.createEmptyRow(7, 8, 0),
-      Matrix.createEmptyRow(7, 8, 0),
-      Matrix.createEmptyRow(7, 8, 0)];
+      Matrix.createEmptyRow(0, 1, 2),
+      Matrix.createEmptyRow(0, 1, 2),
+      Matrix.createEmptyRow(0, 1, 2),
+      Matrix.createEmptyRow(3, 4, 5),
+      Matrix.createEmptyRow(3, 4, 5),
+      Matrix.createEmptyRow(3, 4, 5),
+      Matrix.createEmptyRow(6, 7, 8),
+      Matrix.createEmptyRow(6, 7, 8),
+      Matrix.createEmptyRow(6, 7, 8)];
   }
 
   toArray() {

@@ -1,7 +1,7 @@
 import numpy as np
-import time
 from backend.solver import find_new_entry as find_new, check_sol as check, update_cand as update, \
     init_candidates as initialize
+
 
 class GameState:
     def __init__(self, field, candidates):
@@ -9,7 +9,7 @@ class GameState:
         self.candidates = candidates
 
 
-def solve_sudoku(init, blocks, generation = False):
+def solve_sudoku(init, blocks, generation=False):
     """
     Solves a given Sudoku 
     """

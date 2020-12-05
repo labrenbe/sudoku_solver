@@ -27,7 +27,7 @@ def check_sol(field, blocks):
         # We have to find the indices of elements which currently belong to
         # the block. Each row in curr_block will contain the row and
         # column of an element belonging to the current block
-        curr_block = np.nonzero(blocks == (i+1))
+        curr_block = np.nonzero(blocks == i)
 
         # These arrays are to check for doubles
         check_doubles_row = np.zeros((9,), dtype=int)

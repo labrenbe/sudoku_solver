@@ -4,30 +4,36 @@
       <div class="headline">Sudoku Solver</div>
       <div class="matrix" v-if="matrix !== undefined">
         <div v-for="(row, index) in matrix.cells" v-bind:key="`row-${index}`">
-          <div v-for="cell in row.filter(c => c !== undefined)" v-bind:key="cell.value"
+          <div v-for="cell in row.filter(c => c !== undefined)" v-bind:key="cell.block + getUUID()"
                v-bind:class="getClass(cell.block)" @click="changeBlock(cell)" class="cell">
-            <label>
-              <input v-if="!blockMode && cell.block !== undefined" class="cell-input-number"
+            <label v-bind:class="{'unselect no-pointer': blockMode}">
+              <input class="cell-input-number"
                      type="text" v-model="cell.value" v-bind:class="getClass(cell.block)"
                      @change="validateCell(cell)"/>
             </label>
-            <div v-if="blockMode" class="cell-input-block unselect no-pointer">
-              {{cell.value}}
-            </div>
           </div>
         </div>
       </div>
-      <div style="width:100%">
+      <div>
         <div class="container">
-          <button class="button unselect" v-on:click="solve(matrix)"><span>Solve!</span></button>
+          <button class="button" v-on:click="solve(matrix)"><span>Solve</span></button>
           <div style="width:5%"/>
-          <button class="button unselect" v-on:click="setBlockMode(false)"
+          <button class="button" v-on:click="setBlockMode(false)"
                   v-bind:class="{'button-selected': !blockMode}"><span>Enter Numbers</span></button>
           <div style="width:5%"/>
-          <button class="button unselect" v-on:click="setBlockMode(true)"
+          <button class="button" v-on:click="setBlockMode(true)"
                   v-bind:class="{'button-selected': blockMode}"><span>Change Blocks</span></button>
         </div>
-          <div class="container">
+      </div>
+      <div>
+        <div class="container">
+          <button class="button" v-on:click="clear()"><span>Clear</span></button>
+          <div style="width:5%"/>
+          <button class="button" v-on:click="generate(matrix)"><span>Generate</span></button>
+        </div>
+      </div>
+      <div>
+        <div class="container">
           <div style="width: 60%"/>
           <span style="width:30%; padding: 6px" class="unselect">Selected Block Color</span>
           <div class="selected-block" style="width:5%" v-bind:class="getClass(selectedBlock)"
@@ -43,6 +49,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import axios from 'axios';
 import Matrix from '@/matrix/matrix';
 import Cell from '@/matrix/cell';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component
 export default class Sudoku extends Vue {
@@ -55,6 +62,11 @@ export default class Sudoku extends Vue {
   // eslint-disable-next-line
   getClass(int: number) {
     return `block${int.toString()}`;
+  }
+
+  // eslint-disable-next-line
+  getUUID() {
+    return uuidv4();
   }
 
   setBlockMode(blockMode: boolean) {
@@ -77,6 +89,10 @@ export default class Sudoku extends Vue {
     }
   }
 
+  clear() {
+    this.matrix = new Matrix();
+  }
+
   // eslint-disable-next-line
   solve(matrix: Matrix) {
     const path = 'http://localhost:5000/solve';
@@ -84,6 +100,19 @@ export default class Sudoku extends Vue {
       {
         headers: { 'Content-Type': 'application/json' },
       })
+      .then((res: any) => {
+        matrix.fromArray(res.data);
+      })
+      .catch((error: any) => {
+      // eslint-disable-next-line
+        console.error(error);
+      });
+  }
+
+  // eslint-disable-next-line
+  generate(matrix: Matrix) {
+    const path = 'http://localhost:5000/generate';
+    axios.get(path)
       .then((res: any) => {
         matrix.fromArray(res.data);
       })
@@ -162,7 +191,7 @@ body {
 .container {
     display: inline-flex;
     grid-template-rows: auto auto;
-    padding-top: 25px;
+    padding-top: 10px;
     width: 100%;
 }
 
@@ -185,6 +214,11 @@ body {
     color: black;
     padding: 6px;
     width: 30%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .button-selected {

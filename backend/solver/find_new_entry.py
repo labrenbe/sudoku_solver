@@ -32,6 +32,7 @@ def find_new_entry(field, blocks, candidates, curr_field):
     # Also determine the current block and its elements
     curr_block = blocks[irow][icol]
 
+
     # Little sanity check testing if the field we are looking
     # at right now is actually empty
     if field[irow][icol] != 0:

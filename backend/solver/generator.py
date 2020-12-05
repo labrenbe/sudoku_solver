@@ -1,7 +1,8 @@
 import numpy as np
 import numpy.random as ran
 
-def generate_sudoku(difficulty = "easy"):
+
+def generate_sudoku(difficulty="easy"):
     """
     Generates a Sudoku with a given difficulty
     """
@@ -23,16 +24,8 @@ def generate_sudoku(difficulty = "easy"):
     # As you can see the seed is defined as if the puzzle was 1D with columns before rows ...
     # TODO: Create more seeds for different difficulties and randomly select one
     if difficulty == "easy":
-        seed=[]
-        seed.append([20,40,55,69])
-        seed.append([12,31,51])
-        seed.append([35,61,76])
-        seed.append([53,59,65,78])
-        seed.append([19,27,66,74])
-        seed.append([2,28,42,48,70])
-        seed.append([4,24,47,63,79])
-        seed.append([18,43,62,68,73])
-        seed.append([0,16,23,33,56])
+        seed = [[20, 40, 55, 69], [12, 31, 51], [35, 61, 76], [53, 59, 65, 78], [19, 27, 66, 74], [2, 28, 42, 48, 70],
+                [4, 24, 47, 63, 79], [18, 43, 62, 68, 73], [0, 16, 23, 33, 56]]
     elif difficulty == "medium":
         pass
     elif difficulty == "hard":
@@ -61,6 +54,19 @@ def generate_sudoku(difficulty = "easy"):
 
     # Return the result
     return puzzle
+
+
+def generate_blocks():
+    return [[0, 0, 0, 1, 1, 1, 2, 2, 2],
+            [0, 0, 0, 1, 1, 1, 2, 2, 2],
+            [0, 0, 0, 1, 1, 1, 2, 2, 2],
+            [3, 3, 3, 4, 4, 4, 5, 5, 5],
+            [3, 3, 3, 4, 4, 4, 5, 5, 5],
+            [3, 3, 3, 4, 4, 4, 5, 5, 5],
+            [6, 6, 6, 7, 7, 7, 8, 8, 8],
+            [6, 6, 6, 7, 7, 7, 8, 8, 8],
+            [6, 6, 6, 7, 7, 7, 8, 8, 8]]
+
 
 if __name__ == "__main__":
     field = generate_sudoku()

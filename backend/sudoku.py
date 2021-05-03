@@ -427,7 +427,7 @@ def solve_sudoku(init, blocks, generation=False):
                 solution[jrow, jcol] = val
                 tmp_candidates = np.copy(candidates)
                 update_candidates(tmp_candidates, (jrow, jcol), val, block_members)
-                state_stack.append(GameState(np.copy(solution), tmp_candidates ))
+                state_stack.append(GameState(np.copy(solution), tmp_candidates))
 
         # Check if we have fully solved the puzzle and the
         # solution is legit

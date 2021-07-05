@@ -1,29 +1,12 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS
+import flask_cors
 import numpy as np
 import numpy.random as ran
 
 DEBUG = True
 
 app = Flask(__name__)
-CORS(app, resources={r'/*': {'origins': '*'}})
-
-if __name__ == '__main__':
-    app.run()
-
-
-@app.route("/solve", methods=["POST"])
-def solve():
-    matrix = request.json
-    blocks, values = split_matrix(matrix)
-    solved_matrix = merge_matrix(blocks, solve_sudoku(np.array(values), np.array(blocks)).tolist())
-    print(matrix, solved_matrix)
-    return jsonify(solved_matrix)
-
-
-@app.route("/generate", methods=["GET"])
-def generate():
-    return jsonify(merge_matrix(generate_blocks(), generate_sudoku("easy").tolist()))
+flask_cors.CORS(app, resources={r'/*': {'origins': '*'}})
 
 
 def split_matrix(matrix):
@@ -525,4 +508,19 @@ def generate_blocks():
             [6, 6, 6, 7, 7, 7, 8, 8, 8]]
 
 
+@app.route("/solve", methods=["POST"])
+def solve():
+    matrix = request.json
+    blocks, values = split_matrix(matrix)
+    solved_matrix = merge_matrix(blocks, solve_sudoku(np.array(values), np.array(blocks)).tolist())
+    print(matrix, solved_matrix)
+    return jsonify(solved_matrix)
 
+
+@app.route("/generate", methods=["GET"])
+def generate():
+    return jsonify(merge_matrix(generate_blocks(), generate_sudoku("easy").tolist()))
+
+
+if __name__ == '__main__':
+    app.run()

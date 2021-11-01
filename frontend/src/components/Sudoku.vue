@@ -95,7 +95,7 @@ export default class Sudoku extends Vue {
 
   // eslint-disable-next-line
   solve(matrix: Matrix) {
-    const path = '/solve';
+    const path = 'http://localhost:5000/solve';
     axios.post(path, JSON.stringify(matrix.toArray()),
       {
         headers: { 'Content-Type': 'application/json' },
@@ -111,7 +111,7 @@ export default class Sudoku extends Vue {
 
   // eslint-disable-next-line
   generate(matrix: Matrix) {
-    const path = '/generate';
+    const path = 'http://localhost:5000/generate';
     axios.get(path)
       .then((res: any) => {
         matrix.fromArray(res.data);

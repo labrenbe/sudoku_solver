@@ -1,0 +1,13 @@
+runtime: nodejs14
+instance_class: F1
+
+handlers:
+  # Serve all static files with urls ending with a file extension
+- url: /(.*\..+)$
+  static_files: dist/\1
+  upload: dist/(.*\..+)$  # catch all handler to index.html
+  expiration: '10s'
+- url: /.*
+  static_files: dist/index.html
+  upload: dist/index.html
+  expiration: '10s'

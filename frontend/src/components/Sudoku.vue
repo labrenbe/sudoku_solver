@@ -54,6 +54,7 @@ import { v4 as uuidv4 } from 'uuid';
 @Component
 export default class Sudoku extends Vue {
   matrix = new Matrix();
+  BASE_URL = "";
 
   blockMode = false;
 
@@ -93,14 +94,19 @@ export default class Sudoku extends Vue {
     this.matrix = new Matrix();
   }
 
+
+
   // eslint-disable-next-line
   solve(matrix: Matrix) {
-    const path = 'http://localhost:5000/solve';
+    const path = process.env.VUE_APP_SOLVE_URL;
     axios.post(path, JSON.stringify(matrix.toArray()),
       {
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
       .then((res: any) => {
+        console.log(res)
         matrix.fromArray(res.data);
       })
       .catch((error: any) => {
@@ -111,7 +117,7 @@ export default class Sudoku extends Vue {
 
   // eslint-disable-next-line
   generate(matrix: Matrix) {
-    const path = 'http://localhost:5000/generate';
+    const path = process.env.VUE_APP_GENERATE_URL;
     axios.get(path)
       .then((res: any) => {
         matrix.fromArray(res.data);
